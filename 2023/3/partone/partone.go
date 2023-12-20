@@ -1,7 +1,6 @@
-package main
+package partone
 
 import (
-	"embed"
 	"log/slog"
 	"os"
 	"regexp"
@@ -9,18 +8,9 @@ import (
 	"strings"
 )
 
-//go:embed input.txt
-var input embed.FS
-
 var numRegex = regexp.MustCompile(`\d+`)
 
-func main() {
-	data, err := input.ReadFile("input.txt")
-	if err != nil {
-		slog.Default().Error("failed to read input file", err)
-		os.Exit(1)
-	}
-
+func Solve(data []byte) {
 	total := 0
 	lines := strings.Split(string(data), "\n")
 	for lid, line := range lines {
@@ -31,7 +21,6 @@ func main() {
 					slog.Default().Error("failed to parse number", err)
 					os.Exit(1)
 				}
-				slog.Default().Info("matched number", "line", lid, "number", number)
 				total += number
 			}
 		}
