@@ -1,7 +1,6 @@
 package parttwo
 
 import (
-	"fmt"
 	"log/slog"
 	"os"
 	"regexp"
@@ -18,7 +17,7 @@ func Solve(data []byte) {
 	for lid, line := range lines {
 		for _, num := range gearRegex.FindAllStringIndex(line, -1) {
 			if nmbrs := numbersAround(lines, lid, num[0], num[1]); len(nmbrs) > 1 {
-\				total += multiply(nmbrs)
+				total += multiply(nmbrs)
 			}
 		}
 	}
